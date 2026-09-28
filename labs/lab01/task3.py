@@ -4,7 +4,7 @@ import hashlib
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
@@ -88,7 +88,7 @@ def print_users_table(users_db: list) -> None:
 def log_event(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
         username = args[0] if args else kwargs.get("username", "unknown")
         result = "failure"
         try:
@@ -116,7 +116,7 @@ def _append_log_entry(entry: dict) -> None:
         try:
             with open(LOG_JSON_PATH, mode="r", encoding="utf-8") as log_file:
                 events = json.load(log_file)
-        except (json.JSONDecodeError, IOError):
+        except (OSError, json.JSONDecodeError):
             events = []
 
     events.append(entry)
@@ -161,7 +161,7 @@ def main() -> None:
         print(f"File not found: {error}")
     except PermissionError as error:
         print(f"Permission denied: {error}")
-    except IOError as error:
+    except OSError as error:
         print(f"Input/Output error: {error}")
     except ValidationError as error:
         print(f"Validation error: {error}")

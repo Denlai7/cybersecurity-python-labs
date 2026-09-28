@@ -1,9 +1,7 @@
-import sys
 import os
+import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-
-from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
 
 USERS = {
     "red_team_lead": {
