@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+
+# Ruff cache
+.ruff_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated data (recreated on each run)
+labs/lab01/data/users.csv
+labs/lab01/data/log.json

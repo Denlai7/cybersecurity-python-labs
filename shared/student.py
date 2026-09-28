@@ -1,0 +1,4 @@
+
+STUDENT_NAME = "Sidelnyk Khrystyna" 
+GROUP_NAME = "KB-203"  
+VARIANT_NUMBER = 6
